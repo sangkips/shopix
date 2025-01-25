@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - shopix_pgdb:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=shopix
+      - POSTGRES_USER=shopix
+      - POSTGRES_DB=shopix
+    networks:
+      - shopix_net
+
+volumes:
+  shopix_pgdb:
+
+networks:
+  shopix_net:
