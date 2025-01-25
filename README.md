@@ -49,18 +49,4 @@ The backend exposes an API that is consumed by the frontend.
 
 To test the backend api, there is a [VSCode rest client based](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) file in [client.http](./client.http)
 
-### backend
-
-create virtualenv and use.
-
-Replace the `~/tmp/venvs/shopix` path with where you want to keep your venv.
-
-```sh
-python -m venv ~/tmp/venvs/shopix
-```
-
-Use the virtualenv
-
-```sh
-source ~/tmp/venvs/shopix/bin/activate
-```
+The backend code is in the [backend directory](./backend/)
