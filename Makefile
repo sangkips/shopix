@@ -4,7 +4,7 @@ run:
 migrate:
 	cd backend && python manage.py migrate
 
-migrations:
+makemigrations:
 	cd backend && python manage.py makemigrations
 
 install:

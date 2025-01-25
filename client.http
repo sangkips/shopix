@@ -3,3 +3,39 @@
 ### Get Healthz
 GET {{baseUrl}}/healthz HTTP/1.1
 Accept: application/json
+
+### Create a Product
+POST {{baseUrl}}/products/ HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Product 2",
+    "description": "Product 2 description",
+    "price": 200,
+    "stock": 7
+}
+
+### Get a Product
+GET {{baseUrl}}/products/ba5725a8-17e4-431b-84f7-cc85484b1793/ HTTP/1.1
+Accept: application/json
+
+### Get Products
+GET {{baseUrl}}/products HTTP/1.1
+Accept: application/json
+
+### Update a Product
+PUT {{baseUrl}}/products/ba5725a8-17e4-431b-84f7-cc85484b1793/ HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Product 2 updated",
+    "description": "Product 2 description updated",
+    "price": 170,
+    "stock": 6
+}
+
+### Delete a Product
+DELETE {{baseUrl}}/products/ba5725a8-17e4-431b-84f7-cc85484b1793/ HTTP/1.1
+Accept: application/json
