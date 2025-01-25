@@ -14,7 +14,7 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   return (
     <Card>
-      <CardMedia component="img" height="140" image="/placeholder.svg" alt={product.name} />
+      <CardMedia component="img" height="140" image={product.image || "/placeholder.svg"} alt={product.name} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {product.name}

@@ -8,14 +8,6 @@ import { useEffect, useState } from "react";
 import { fetchProducts } from "./lib/api";
 import Grid from "@mui/material/Grid";
 
-// This would typically come from an API or database
-// const products: Product[] = [
-//   { id: 1, name: "Product 1", description: "This is product 1", price: 19.99, image: "/placeholder.svg" },
-//   { id: 2, name: "Product 2", description: "This is product 2", price: 29.99, image: "/placeholder.svg" },
-//   { id: 3, name: "Product 3", description: "This is product 3", price: 39.99, image: "/placeholder.svg" },
-//   { id: 3, name: "Product 4", description: "This is product 4", price: 39.99, image: "/placeholder.svg" },
-// ];
-
 export default function Home() {
   const [products, setProductss] = useState<Product[]>([]);
 
