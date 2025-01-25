@@ -14,7 +14,7 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   return (
     <Card>
-      <CardMedia component="img" height="140" image={product.image} alt={product.name} />
+      <CardMedia component="img" height="140" image="/placeholder.svg" alt={product.name} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {product.name}
@@ -23,7 +23,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           {product.description}
         </Typography>
         <Typography variant="h6" color="text.primary" sx={{ mt: 2 }}>
-          ${product.price.toFixed(2)}
+          ${Number(product.price).toFixed(2)}
         </Typography>
       </CardContent>
       <CardActions>
