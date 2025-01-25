@@ -1,30 +1,73 @@
-import { notFound } from "next/navigation";
+"use client";
+
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 import type { Product } from "../../types/product";
+import { fetchProduct } from "../../lib/api";
 
-// This would typically come from an API or database
-const products: Product[] = [
-  { id: 1, name: "Product 1", description: "This is product 1", price: 19.99, image: "/placeholder.svg" },
-  { id: 2, name: "Product 2", description: "This is product 2", price: 29.99, image: "/placeholder.svg" },
-  { id: 3, name: "Product 3", description: "This is product 3", price: 39.99, image: "/placeholder.svg" },
-];
+export default function ProductPage() {
+  const params = useParams();
+  const [product, setProduct] = useState<Product | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-export default async function ProductPage({ params }: { params: { id: string } }) {
-  const { id } = await params;
-  const product = products.find((p) => p.id === Number.parseInt(id));
+  useEffect(() => {
+    const fetchProductData = async () => {
+      if (params?.id) {
+        try {
+          setIsLoading(true);
+          const fetchedProduct = await fetchProduct(params.id as string);
+          setProduct(fetchedProduct);
+        } catch (err) {
+          setError("Failed to load product. Please try again.");
+        } finally {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    fetchProductData();
+  }, [params?.id]);
+
+  if (isLoading) {
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (error) {
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+        <Typography color="error">{error}</Typography>
+      </Box>
+    );
+  }
 
   if (!product) {
-    notFound();
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+        <Typography>Product not found</Typography>
+      </Box>
+    );
   }
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
       <Grid container spacing={4} sx={{ mt: 4 }}>
         <Grid item xs={12} md={6}>
-          <img src={product.image || "/placeholder.svg"} alt={product.name} style={{ width: "100%", height: "auto" }} />
+          <Box
+            component="img"
+            src={product.image || "/placeholder.svg"}
+            alt={product.name}
+            sx={{ width: "100%", height: "auto" }}
+          />
         </Grid>
         <Grid item xs={12} md={6}>
           <Typography variant="h4" component="h1" gutterBottom>
@@ -34,7 +77,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
             {product.description}
           </Typography>
           <Typography variant="h5" color="text.primary" sx={{ mb: 2 }}>
-            ${product.price.toFixed(2)}
+            ${Number(product.price).toFixed(2)}
           </Typography>
           <Button variant="contained" color="primary">
             Add to Cart

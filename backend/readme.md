@@ -19,22 +19,3 @@ DB connectivity
 ```sh
 psql 'postgresql://shopix:shopix@localhost:5432/shopix'
 ```
-
-## Products
-
-- [x] connect to postgres
-- [ ] create a products app
-- [ ] Hook django rest for API
-- [ ] Add model
-
-Product
-
-- id
-- name
-- description
-- timestamps
-- price
-- user_id
-- count
-
- id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

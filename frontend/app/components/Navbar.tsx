@@ -11,7 +11,7 @@ export default function Navbar() {
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           <Link href="/" passHref style={{ color: "inherit", textDecoration: "none" }}>
-            My Ecommerce Store
+            Shopix
           </Link>
         </Typography>
         <Button color="inherit" startIcon={<ShoppingCartIcon />}>
