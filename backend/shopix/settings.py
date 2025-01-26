@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,8 +38,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "rest_framework",
+    
     "product",
+    "accounts",
+    
+    "rest_framework",
+    "rest_framework_simplejwt",
     "corsheaders",
 ]
 
@@ -134,3 +139,19 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # Access token validity
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),     # Refresh token validity
+    'ROTATE_REFRESH_TOKENS': True,                   # Rotate refresh tokens
+    'BLACKLIST_AFTER_ROTATION': True,                # Blacklist old refresh tokens
+}
