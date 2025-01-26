@@ -38,7 +38,7 @@ export const login = async (email: string, password: string) => {
     method: "POST",
     body: JSON.stringify({ email, password }),
   });
-  return response.token;
+  return response;
 };
 
 export const register = async (
