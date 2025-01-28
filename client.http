@@ -17,7 +17,7 @@ Content-Type: application/json
 }
 
 ### Get a Product
-GET {{baseUrl}}/products/ba5725a8-17e4-431b-84f7-cc85484b1793/ HTTP/1.1
+GET {{baseUrl}}/products/65839a7d-da0d-46f9-b08a-fa6dc27e824a/ HTTP/1.1
 Accept: application/json
 
 ### Get Products
@@ -25,17 +25,75 @@ GET {{baseUrl}}/products HTTP/1.1
 Accept: application/json
 
 ### Update a Product
-PUT {{baseUrl}}/products/ba5725a8-17e4-431b-84f7-cc85484b1793/ HTTP/1.1
+PUT {{baseUrl}}/products/65839a7d-da0d-46f9-b08a-fa6dc27e824a/ HTTP/1.1
 Accept: application/json
 Content-Type: application/json
 
 {
-    "name": "Product 2 updated",
+    "name": "Product 1 updated",
     "description": "Product 2 description updated",
-    "price": 170,
-    "stock": 6
+    "price": 17000,
+    "stock": 40
 }
 
 ### Delete a Product
 DELETE {{baseUrl}}/products/ba5725a8-17e4-431b-84f7-cc85484b1793/ HTTP/1.1
 Accept: application/json
+
+# User Registration
+
+### Create a User
+@id=db1b7ceb-d949-4673-b21b-ebb2eca7a1a7
+
+POST {{baseUrl}}/accounts/users/ HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+
+{
+    "email": "sa@email.com",
+    "first_name": "Test",
+    "last_name": "Sang",
+    "phone_number": "09876543456",
+    "password": "Sang@123%",
+    "password2": "Sang@123%"
+}
+
+### Get a User
+
+GET {{baseUrl}}/accounts/users/{{id}}/ HTTP/1.1
+Accept: application/json
+
+### Get Users
+GET {{baseUrl}}/accounts/users/ HTTP/1.1
+Accept: application/json
+
+### Update a User
+PUT {{baseUrl}}/accounts/users/{{id}}/ HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+
+{
+    "email": "san@email.com",
+    "first_name": "Test",
+    "last_name": "Sang",
+    "phone_number": "08765346576879"
+}
+
+### Delete user
+
+DELETE {{baseUrl}}/accounts/users/{{id}}/ HTTP/1.1
+Accept: application/json
+
+### User Login
+
+POST {{baseUrl}}/accounts/token/ HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+    "email": "sa@email.com",
+    "password": "Sang@123%"
+}
+
+
+
