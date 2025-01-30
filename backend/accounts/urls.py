@@ -8,10 +8,12 @@ from .views import (
     AddressRetrieveUpdateDestroyView,
     CustomUserListCreateView,
     CustomUserRetrieveUpdateDestroyView,
-    CustomTokenObtainPairView
+    CustomTokenObtainPairView,
+    UserProfileView
 )
 
 urlpatterns = [
+    path('profile/', UserProfileView.as_view(), name='user-profile'),
     path('users/', CustomUserListCreateView.as_view(), name='user-list-create'),
     path('users/<str:pk>/', CustomUserRetrieveUpdateDestroyView.as_view(), name='user-retrieve-update-destroy'),
 
